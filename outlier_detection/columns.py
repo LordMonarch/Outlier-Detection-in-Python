@@ -1,0 +1,6 @@
+NAME_DATA = "data"
+NAME_MEAN = "mean"
+NAME_STD_DEV = "stv_dev"
+NAME_IS_OUTLIER = "is_outlier"
+NAME_MEDIAN = "median"
+NAME_ABS_DIFF = "abs_diff"
