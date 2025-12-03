@@ -17,7 +17,7 @@ class Detection(ABC):
             )
 
     @property
-    def outliers(self) -> pd.DataFrame:
+    def outliers(self) -> pd.Series:
         if NAME_IS_OUTLIER not in self.data.columns:
             raise ValueError("Die Detection wurde noch nicht gestartet!")
 
@@ -25,7 +25,7 @@ class Detection(ABC):
         return filtered[NAME_DATA]
 
     @property
-    def without_outliers(self) -> pd.DataFrame:
+    def without_outliers(self) -> pd.Series:
         print(self.data.columns)
         if NAME_IS_OUTLIER not in self.data.columns:
             raise ValueError("Die Detection wurde noch nicht gestartet!")
