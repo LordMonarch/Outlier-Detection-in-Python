@@ -35,7 +35,6 @@ from outlier_detection.columns import (
     NAME_MEDIAN,
     NAME_ABS_DIFF,
 )
-from outlier_detection.utils import median, abs_diff
 
 logger = loguru.logger
 
@@ -95,11 +94,11 @@ class MAD(Detection):
     def mad(self):
         pdf = self.data
 
-        pdf = median(pdf, NAME_DATA, NAME_MEDIAN)
-        pdf = abs_diff(pdf, NAME_DATA, NAME_MEDIAN, NAME_ABS_DIFF)
-        pdf = median(pdf, NAME_ABS_DIFF, NAME_MEDIAN_ABS_DIFF)
-
+        pdf[NAME_MEDIAN] = pdf[NAME_DATA].median()
+        pdf[NAME_ABS_DIFF] = (pdf[NAME_DATA] - pdf[NAME_MEDIAN]).abs()
+        pdf[NAME_MEDIAN_ABS_DIFF] = pdf[NAME_ABS_DIFF].median()
         pdf[NAME_MAD] = pdf[NAME_ABS_DIFF] / pdf[NAME_MEDIAN_ABS_DIFF]
+
         pdf[NAME_IS_OUTLIER] = pdf[NAME_MAD] >= self.threshold
 
         logger.success(

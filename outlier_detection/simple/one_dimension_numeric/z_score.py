@@ -27,7 +27,6 @@ from outlier_detection.columns import (
     NAME_STD_DEV,
     NAME_DATA,
 )
-from outlier_detection.utils import mean, std_dev
 
 logger = loguru.logger
 
@@ -81,8 +80,8 @@ class Z_SCORE(Detection):
 
     def z_score(self) -> None:
         pdf = self.data
-        pdf = mean(pdf, in_col=NAME_DATA, out_col=NAME_MEAN)
-        pdf = std_dev(pdf, in_col=NAME_DATA, out_col=NAME_STD_DEV)
+        pdf[NAME_MEAN] = pdf[NAME_DATA].mean()
+        pdf[NAME_STD_DEV] = pdf[NAME_DATA].std()
         pdf[NAME_Z_SCORE] = (pdf[NAME_DATA] - pdf[NAME_MEAN]) / pdf[NAME_STD_DEV]
 
         pdf[NAME_IS_OUTLIER] = (pdf[NAME_Z_SCORE] >= self.threshold) | (

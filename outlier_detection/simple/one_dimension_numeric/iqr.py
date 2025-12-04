@@ -30,7 +30,6 @@ import matplotlib.pyplot as plt
 
 from outlier_detection.base import Detection
 from outlier_detection.columns import NAME_DATA, NAME_IS_OUTLIER
-from outlier_detection.utils import quantile
 
 logger = loguru.logger
 
@@ -85,8 +84,8 @@ class IQR(Detection):
     def iqr(self) -> None:
         pdf = self.data
 
-        q1 = quantile(pdf, NAME_DATA, 0.25)
-        q3 = quantile(pdf, NAME_DATA, 0.75)
+        q1 = pdf[NAME_DATA].quantile(0.25)
+        q3 = pdf[NAME_DATA].quantile(0.75)
         igr = q3 - q1
 
         self.iqr_lower_limit = q1 - (self.threshold * igr)
