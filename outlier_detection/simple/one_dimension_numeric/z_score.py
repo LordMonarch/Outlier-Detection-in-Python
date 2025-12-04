@@ -13,11 +13,6 @@ Bedeutungen:
 - z > 0: Wert liegt über dem Mittelwert.
 - z < 0: Wert liegt unter dem Mittelwert.
 - |z| >= 2 oder 3: Häufiges Kriterium zur Erkennung von Ausreißern.
-
-Der Z-Score wird häufig verwendet zur:
-- Normalisierung/Standardisierung von Daten
-- Erkennung ungewöhnlicher Werte (Outlier Detection)
-- Vergleichbarkeit von Werten unterschiedlicher Skalen
 """
 
 from typing import Union

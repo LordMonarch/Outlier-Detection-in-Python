@@ -21,11 +21,6 @@ Ausreißererkennung (klassische Tukey-Regel):
 - Untere Grenze: Q1 - 2.2 (oder 1.5) * IQR
 - Obere Grenze: Q3 + 2.2 (oder 1.5) * IQR
   Werte außerhalb dieses Bereichs gelten typischerweise als Ausreißer.
-
-Typische Nutzung:
-- Robuste Streuungsanalyse
-- Ausreißererkennung bei verzerrten oder nicht normalverteilten Daten
-- Statistische Datenvorverarbeitung
 """
 
 from typing import Union

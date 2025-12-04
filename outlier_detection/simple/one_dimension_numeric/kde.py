@@ -22,11 +22,6 @@ Einfluss von Ausreißern:
 - Bei kleiner Bandbreite kann dies zu „Nebenwellen“ oder unerwünschten Peaks führen.
 - Bei großer Bandbreite wird der Einfluss eines Ausreißers stark verwischt.
 - Robustere Alternativen:
-
-Typische Nutzung:
-- Glatte Visualisierung der Datenverteilung
-- Erkennen von Modalitäten (ein- oder mehrgipflige Verteilungen)
-- Explorative Analyse, wenn Histogramme zu grob oder instabil sind
 """
 
 from typing import Union

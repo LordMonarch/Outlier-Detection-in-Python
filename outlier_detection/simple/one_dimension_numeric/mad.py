@@ -21,11 +21,6 @@ Bedeutungen:
 - Kleiner MAD: Die Daten liegen eng um den Median.
 - Großer MAD: Starke Streuung bzw. größere Variabilität der Werte.
 - Da der MAD robust ist, eignet er sich gut zur Ausreißererkennung.
-
-Typische Nutzung:
-- Robustere Alternative zur Standardabweichung
-- Outlier Detection bei nicht normalverteilten Daten
-- Vorverarbeitung von Messreihen mit Ausreißern
 """
 
 from typing import Union

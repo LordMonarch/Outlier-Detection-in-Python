@@ -21,12 +21,6 @@ Bedeutungen:
 - Kleiner max_dist: Punkt liegt nah an seinen Nachbarn → typischer Datenpunkt.
 - Großer max_dist: Punkt liegt weit entfernt → potenzieller Ausreißer.
 - Der Ansatz ist besonders geeignet für Daten ohne feste Verteilungsannahmen.
-
-Typische Nutzung:
-- Outlier Detection bei Messreihen oder Feature-Daten
-- Analyse von Clustern und räumlicher Streuung
-- Identifikation von ungewöhnlichen Datenpunkten in univariaten oder
-  mehrdimensionalen Datensätzen
 """
 
 from typing import Union

@@ -24,11 +24,6 @@ Ausreißererkennung (klassische Tukey-Regel):
 - Untere Grenze: Q1 - 1.0 * IDR
 - Obere Grenze: Q3 + 1.0 * IDR
   Werte außerhalb dieses Bereichs gelten typischerweise als Ausreißer.
-
-Typische Nutzung:
-- Analyse der Streuung bei leicht schiefen oder verrauschten Verteilungen
-- Erkennung ungewöhnlicher Variabilität ohne starke Ausreißerempfindlichkeit
-- Robustere Datencharakterisierung als Spannweite, aber umfassender als IQR
 """
 
 from typing import Union
