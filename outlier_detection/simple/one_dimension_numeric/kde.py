@@ -55,10 +55,12 @@ class KDE(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
     - NAME_KDE : str
         Name der Spalte, in der die berechneten KDE-Werte gespeichert werden.
-    - _bandwidth : float
-        Bandbreite des Gaussian-Kernels, der die Glätte der Dichtefunktion steuert.
 
     Methoden
     -------

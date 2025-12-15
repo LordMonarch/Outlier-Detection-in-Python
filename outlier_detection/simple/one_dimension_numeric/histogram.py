@@ -39,7 +39,11 @@ class Histogram(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
-    - _bins : int
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
+    - bins : int
         Anzahl der Bins, die für die Histogrammberechnung verwendet werden.
 
     Methoden

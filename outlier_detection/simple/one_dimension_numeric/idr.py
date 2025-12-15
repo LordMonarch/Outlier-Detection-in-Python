@@ -53,9 +53,13 @@ class IDR(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
-    - _iqr_lower_limit : float
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
+    - iqr_lower_limit : float
         Untere Grenze für Ausreißer basierend auf dem IDR.
-    - _iqr_upper_limit : float
+    - iqr_upper_limit : float
         Obere Grenze für Ausreißer basierend auf dem IDR.
 
     Methoden
@@ -101,7 +105,7 @@ class IDR(Detection):
         self.iqr_upper_limit = q3 + (self.threshold * idr)
 
         pdf[NAME_IS_OUTLIER] = (pdf[NAME_DATA] >= self.iqr_upper_limit) | (
-                pdf[NAME_DATA] <= self.iqr_lower_limit
+            pdf[NAME_DATA] <= self.iqr_lower_limit
         )
 
         logger.success(

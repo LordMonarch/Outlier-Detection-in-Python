@@ -48,6 +48,10 @@ class Z_SCORE(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
     - NAME_Z_SCORE : str
         Name der Spalte, in der die berechneten Z-Scores gespeichert werden.
     - NAME_MEAN : str
