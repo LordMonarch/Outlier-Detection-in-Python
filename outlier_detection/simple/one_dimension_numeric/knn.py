@@ -91,7 +91,7 @@ class KNN(Detection):
     """
 
     def __init__(
-            self, data: list[Union[int, float]], k: int = 25, threshold: int = 0.2
+        self, data: list[Union[int, float]], k: int = 25, threshold: int = 0.2
     ):
         super().__init__(data)
         self.k = k
@@ -143,10 +143,11 @@ class KNN(Detection):
 
 
 if __name__ == "__main__":
-    from sklearn.datasets import fetch_openml
+    import outlier_detection.files as f
+    from pathlib import Path
 
-    d = fetch_openml("segment", version=1, parser="auto")
-    d = pd.DataFrame(data=d.data)
+    path = Path(f.__file__).parent.joinpath("segment.csv").absolute()
+    d = pd.read_csv(path, header=0)
     d = d["hue-mean"].to_list()
 
     k1 = KNN(d)
