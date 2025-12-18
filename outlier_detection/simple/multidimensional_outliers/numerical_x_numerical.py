@@ -36,7 +36,7 @@ class NumericalFullDataFrame(DetectionFullDataFrame):
 
     Eigenschaften / Konstanten
     --------------------------
-     - NAME_MAD_<i> : str
+    - NAME_MAD_<i> : str
         Name der Spalte, in der die normalisierten absoluten Abweichungen gespeichert werden.
     - NAME_MAD_SUM : str
         Name der Spalte, in der die Zeilensumme der MAD-Werte steht.

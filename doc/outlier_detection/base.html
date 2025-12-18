@@ -45,6 +45,30 @@
                 </ul>
 
             </li>
+            <li>
+                    <a class="class" href="#DetectionFullDataFrame">DetectionFullDataFrame</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#DetectionFullDataFrame.diagram">diagram</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DetectionFullDataFrame.outliers">outliers</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DetectionFullDataFrame.without_outliers">without_outliers</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#DetectionPaired">DetectionPaired</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#DetectionPaired.diagram">diagram</a>
+                        </li>
+                </ul>
+
+            </li>
     </ul>
 
 
@@ -71,7 +95,7 @@
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">outlier_detection.columns</span><span class="w"> </span><span class="kn">import</span> <span class="n">NAME_DATA</span><span class="p">,</span> <span class="n">NAME_IS_OUTLIER</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">outlier_detection.columns</span><span class="w"> </span><span class="kn">import</span> <span class="n">NAME_DATA</span><span class="p">,</span> <span class="n">NAME_IS_OUTLIER</span><span class="p">,</span> <span class="n">NAME_OTHER</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Detection</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
@@ -85,7 +109,7 @@
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>            <span class="p">)</span>
 </span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
 </span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>    <span class="nd">@property</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
 </span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>
@@ -93,7 +117,7 @@
 </span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>        <span class="k">return</span> <span class="n">filtered</span><span class="p">[</span><span class="n">NAME_DATA</span><span class="p">]</span>
 </span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>
 </span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="nd">@property</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
@@ -103,6 +127,52 @@
 </span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>
 </span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>    <span class="nd">@abstractmethod</span>
 </span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="k">class</span><span class="w"> </span><span class="nc">DetectionFullDataFrame</span><span class="p">(</span><span class="n">Detection</span><span class="p">):</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([])</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>                <span class="sa">f</span><span class="s2">&quot;Daten müssen als DataFrame übergeben werden. Aktuell: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>            <span class="p">)</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>    <span class="nd">@property</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>    <span class="nd">@property</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>
+</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a>
+</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>
+</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a><span class="k">class</span><span class="w"> </span><span class="nc">DetectionPaired</span><span class="p">(</span><span class="n">Detection</span><span class="p">):</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">other_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]):</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a>        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other_data</span><span class="p">),</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a>            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([])</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">NAME_DATA</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="n">NAME_OTHER</span><span class="p">:</span> <span class="n">other_data</span><span class="p">})</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>
+</span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a>            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>                <span class="sa">f</span><span class="s2">&quot;Daten müssen als Liste übergeben werden. Aktuell: data=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> und other_data=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other_data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>            <span class="p">)</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos">81</span></a>
+</span><span id="L-82"><a href="#L-82"><span class="linenos">82</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos">83</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </span></pre></div>
 
 
@@ -129,7 +199,7 @@
 </span><span id="Detection-18"><a href="#Detection-18"><span class="linenos">18</span></a>            <span class="p">)</span>
 </span><span id="Detection-19"><a href="#Detection-19"><span class="linenos">19</span></a>
 </span><span id="Detection-20"><a href="#Detection-20"><span class="linenos">20</span></a>    <span class="nd">@property</span>
-</span><span id="Detection-21"><a href="#Detection-21"><span class="linenos">21</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="Detection-21"><a href="#Detection-21"><span class="linenos">21</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="Detection-22"><a href="#Detection-22"><span class="linenos">22</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="Detection-23"><a href="#Detection-23"><span class="linenos">23</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
 </span><span id="Detection-24"><a href="#Detection-24"><span class="linenos">24</span></a>
@@ -137,7 +207,7 @@
 </span><span id="Detection-26"><a href="#Detection-26"><span class="linenos">26</span></a>        <span class="k">return</span> <span class="n">filtered</span><span class="p">[</span><span class="n">NAME_DATA</span><span class="p">]</span>
 </span><span id="Detection-27"><a href="#Detection-27"><span class="linenos">27</span></a>
 </span><span id="Detection-28"><a href="#Detection-28"><span class="linenos">28</span></a>    <span class="nd">@property</span>
-</span><span id="Detection-29"><a href="#Detection-29"><span class="linenos">29</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="Detection-29"><a href="#Detection-29"><span class="linenos">29</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="Detection-30"><a href="#Detection-30"><span class="linenos">30</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </span><span id="Detection-31"><a href="#Detection-31"><span class="linenos">31</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="Detection-32"><a href="#Detection-32"><span class="linenos">32</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
@@ -158,14 +228,14 @@ inheritance.</p>
                             <div id="Detection.outliers" class="classattr">
                                         <input id="Detection.outliers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr variable">
-            <span class="name">outliers</span><span class="annotation">: pandas.core.frame.DataFrame</span>
+            <span class="name">outliers</span><span class="annotation">: pandas.core.series.Series</span>
 
                 <label class="view-source-button" for="Detection.outliers-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#Detection.outliers"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="Detection.outliers-20"><a href="#Detection.outliers-20"><span class="linenos">20</span></a>    <span class="nd">@property</span>
-</span><span id="Detection.outliers-21"><a href="#Detection.outliers-21"><span class="linenos">21</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="Detection.outliers-21"><a href="#Detection.outliers-21"><span class="linenos">21</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="Detection.outliers-22"><a href="#Detection.outliers-22"><span class="linenos">22</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="Detection.outliers-23"><a href="#Detection.outliers-23"><span class="linenos">23</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
 </span><span id="Detection.outliers-24"><a href="#Detection.outliers-24"><span class="linenos">24</span></a>
@@ -180,14 +250,14 @@ inheritance.</p>
                             <div id="Detection.without_outliers" class="classattr">
                                         <input id="Detection.without_outliers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr variable">
-            <span class="name">without_outliers</span><span class="annotation">: pandas.core.frame.DataFrame</span>
+            <span class="name">without_outliers</span><span class="annotation">: pandas.core.series.Series</span>
 
                 <label class="view-source-button" for="Detection.without_outliers-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#Detection.without_outliers"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="Detection.without_outliers-28"><a href="#Detection.without_outliers-28"><span class="linenos">28</span></a>    <span class="nd">@property</span>
-</span><span id="Detection.without_outliers-29"><a href="#Detection.without_outliers-29"><span class="linenos">29</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="Detection.without_outliers-29"><a href="#Detection.without_outliers-29"><span class="linenos">29</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
 </span><span id="Detection.without_outliers-30"><a href="#Detection.without_outliers-30"><span class="linenos">30</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </span><span id="Detection.without_outliers-31"><a href="#Detection.without_outliers-31"><span class="linenos">31</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
 </span><span id="Detection.without_outliers-32"><a href="#Detection.without_outliers-32"><span class="linenos">32</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
@@ -219,6 +289,183 @@ inheritance.</p>
 
     
 
+                            </div>
+                </section>
+                <section id="DetectionFullDataFrame">
+                            <input id="DetectionFullDataFrame-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">DetectionFullDataFrame</span><wbr>(<span class="base"><a href="#Detection">Detection</a></span>):
+
+                <label class="view-source-button" for="DetectionFullDataFrame-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionFullDataFrame"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionFullDataFrame-41"><a href="#DetectionFullDataFrame-41"><span class="linenos">41</span></a><span class="k">class</span><span class="w"> </span><span class="nc">DetectionFullDataFrame</span><span class="p">(</span><span class="n">Detection</span><span class="p">):</span>
+</span><span id="DetectionFullDataFrame-42"><a href="#DetectionFullDataFrame-42"><span class="linenos">42</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="DetectionFullDataFrame-43"><a href="#DetectionFullDataFrame-43"><span class="linenos">43</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span id="DetectionFullDataFrame-44"><a href="#DetectionFullDataFrame-44"><span class="linenos">44</span></a>
+</span><span id="DetectionFullDataFrame-45"><a href="#DetectionFullDataFrame-45"><span class="linenos">45</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="DetectionFullDataFrame-46"><a href="#DetectionFullDataFrame-46"><span class="linenos">46</span></a>        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="DetectionFullDataFrame-47"><a href="#DetectionFullDataFrame-47"><span class="linenos">47</span></a>            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([])</span>
+</span><span id="DetectionFullDataFrame-48"><a href="#DetectionFullDataFrame-48"><span class="linenos">48</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="DetectionFullDataFrame-49"><a href="#DetectionFullDataFrame-49"><span class="linenos">49</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame-50"><a href="#DetectionFullDataFrame-50"><span class="linenos">50</span></a>            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+</span><span id="DetectionFullDataFrame-51"><a href="#DetectionFullDataFrame-51"><span class="linenos">51</span></a>                <span class="sa">f</span><span class="s2">&quot;Daten müssen als DataFrame übergeben werden. Aktuell: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="DetectionFullDataFrame-52"><a href="#DetectionFullDataFrame-52"><span class="linenos">52</span></a>            <span class="p">)</span>
+</span><span id="DetectionFullDataFrame-53"><a href="#DetectionFullDataFrame-53"><span class="linenos">53</span></a>
+</span><span id="DetectionFullDataFrame-54"><a href="#DetectionFullDataFrame-54"><span class="linenos">54</span></a>    <span class="nd">@property</span>
+</span><span id="DetectionFullDataFrame-55"><a href="#DetectionFullDataFrame-55"><span class="linenos">55</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame-56"><a href="#DetectionFullDataFrame-56"><span class="linenos">56</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame-57"><a href="#DetectionFullDataFrame-57"><span class="linenos">57</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame-58"><a href="#DetectionFullDataFrame-58"><span class="linenos">58</span></a>
+</span><span id="DetectionFullDataFrame-59"><a href="#DetectionFullDataFrame-59"><span class="linenos">59</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="DetectionFullDataFrame-60"><a href="#DetectionFullDataFrame-60"><span class="linenos">60</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span><span id="DetectionFullDataFrame-61"><a href="#DetectionFullDataFrame-61"><span class="linenos">61</span></a>
+</span><span id="DetectionFullDataFrame-62"><a href="#DetectionFullDataFrame-62"><span class="linenos">62</span></a>    <span class="nd">@property</span>
+</span><span id="DetectionFullDataFrame-63"><a href="#DetectionFullDataFrame-63"><span class="linenos">63</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame-64"><a href="#DetectionFullDataFrame-64"><span class="linenos">64</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame-65"><a href="#DetectionFullDataFrame-65"><span class="linenos">65</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame-66"><a href="#DetectionFullDataFrame-66"><span class="linenos">66</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame-67"><a href="#DetectionFullDataFrame-67"><span class="linenos">67</span></a>
+</span><span id="DetectionFullDataFrame-68"><a href="#DetectionFullDataFrame-68"><span class="linenos">68</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="DetectionFullDataFrame-69"><a href="#DetectionFullDataFrame-69"><span class="linenos">69</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+</div>
+
+
+                            <div id="DetectionFullDataFrame.diagram" class="classattr">
+                                        <input id="DetectionFullDataFrame.diagram-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator decorator-abstractmethod">@abstractmethod</div>
+
+        <span class="def">def</span>
+        <span class="name">diagram</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+                <label class="view-source-button" for="DetectionFullDataFrame.diagram-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionFullDataFrame.diagram"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionFullDataFrame.diagram-42"><a href="#DetectionFullDataFrame.diagram-42"><span class="linenos">42</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="DetectionFullDataFrame.diagram-43"><a href="#DetectionFullDataFrame.diagram-43"><span class="linenos">43</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="DetectionFullDataFrame.outliers" class="classattr">
+                                        <input id="DetectionFullDataFrame.outliers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr variable">
+            <span class="name">outliers</span><span class="annotation">: pandas.core.frame.DataFrame</span>
+
+                <label class="view-source-button" for="DetectionFullDataFrame.outliers-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionFullDataFrame.outliers"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionFullDataFrame.outliers-54"><a href="#DetectionFullDataFrame.outliers-54"><span class="linenos">54</span></a>    <span class="nd">@property</span>
+</span><span id="DetectionFullDataFrame.outliers-55"><a href="#DetectionFullDataFrame.outliers-55"><span class="linenos">55</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame.outliers-56"><a href="#DetectionFullDataFrame.outliers-56"><span class="linenos">56</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame.outliers-57"><a href="#DetectionFullDataFrame.outliers-57"><span class="linenos">57</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame.outliers-58"><a href="#DetectionFullDataFrame.outliers-58"><span class="linenos">58</span></a>
+</span><span id="DetectionFullDataFrame.outliers-59"><a href="#DetectionFullDataFrame.outliers-59"><span class="linenos">59</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="DetectionFullDataFrame.outliers-60"><a href="#DetectionFullDataFrame.outliers-60"><span class="linenos">60</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="DetectionFullDataFrame.without_outliers" class="classattr">
+                                        <input id="DetectionFullDataFrame.without_outliers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr variable">
+            <span class="name">without_outliers</span><span class="annotation">: pandas.core.frame.DataFrame</span>
+
+                <label class="view-source-button" for="DetectionFullDataFrame.without_outliers-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionFullDataFrame.without_outliers"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionFullDataFrame.without_outliers-62"><a href="#DetectionFullDataFrame.without_outliers-62"><span class="linenos">62</span></a>    <span class="nd">@property</span>
+</span><span id="DetectionFullDataFrame.without_outliers-63"><a href="#DetectionFullDataFrame.without_outliers-63"><span class="linenos">63</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">without_outliers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame.without_outliers-64"><a href="#DetectionFullDataFrame.without_outliers-64"><span class="linenos">64</span></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame.without_outliers-65"><a href="#DetectionFullDataFrame.without_outliers-65"><span class="linenos">65</span></a>        <span class="k">if</span> <span class="n">NAME_IS_OUTLIER</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+</span><span id="DetectionFullDataFrame.without_outliers-66"><a href="#DetectionFullDataFrame.without_outliers-66"><span class="linenos">66</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Die Detection wurde noch nicht gestartet!&quot;</span><span class="p">)</span>
+</span><span id="DetectionFullDataFrame.without_outliers-67"><a href="#DetectionFullDataFrame.without_outliers-67"><span class="linenos">67</span></a>
+</span><span id="DetectionFullDataFrame.without_outliers-68"><a href="#DetectionFullDataFrame.without_outliers-68"><span class="linenos">68</span></a>        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">NAME_IS_OUTLIER</span><span class="p">]]</span>
+</span><span id="DetectionFullDataFrame.without_outliers-69"><a href="#DetectionFullDataFrame.without_outliers-69"><span class="linenos">69</span></a>        <span class="k">return</span> <span class="n">filtered</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                </section>
+                <section id="DetectionPaired">
+                            <input id="DetectionPaired-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">DetectionPaired</span><wbr>(<span class="base"><a href="#Detection">Detection</a></span>):
+
+                <label class="view-source-button" for="DetectionPaired-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionPaired"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionPaired-72"><a href="#DetectionPaired-72"><span class="linenos">72</span></a><span class="k">class</span><span class="w"> </span><span class="nc">DetectionPaired</span><span class="p">(</span><span class="n">Detection</span><span class="p">):</span>
+</span><span id="DetectionPaired-73"><a href="#DetectionPaired-73"><span class="linenos">73</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">other_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]):</span>
+</span><span id="DetectionPaired-74"><a href="#DetectionPaired-74"><span class="linenos">74</span></a>        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other_data</span><span class="p">),</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="DetectionPaired-75"><a href="#DetectionPaired-75"><span class="linenos">75</span></a>            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([])</span>
+</span><span id="DetectionPaired-76"><a href="#DetectionPaired-76"><span class="linenos">76</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">NAME_DATA</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="n">NAME_OTHER</span><span class="p">:</span> <span class="n">other_data</span><span class="p">})</span>
+</span><span id="DetectionPaired-77"><a href="#DetectionPaired-77"><span class="linenos">77</span></a>
+</span><span id="DetectionPaired-78"><a href="#DetectionPaired-78"><span class="linenos">78</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="DetectionPaired-79"><a href="#DetectionPaired-79"><span class="linenos">79</span></a>            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+</span><span id="DetectionPaired-80"><a href="#DetectionPaired-80"><span class="linenos">80</span></a>                <span class="sa">f</span><span class="s2">&quot;Daten müssen als Liste übergeben werden. Aktuell: data=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> und other_data=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other_data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="DetectionPaired-81"><a href="#DetectionPaired-81"><span class="linenos">81</span></a>            <span class="p">)</span>
+</span><span id="DetectionPaired-82"><a href="#DetectionPaired-82"><span class="linenos">82</span></a>
+</span><span id="DetectionPaired-83"><a href="#DetectionPaired-83"><span class="linenos">83</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="DetectionPaired-84"><a href="#DetectionPaired-84"><span class="linenos">84</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+</div>
+
+
+                            <div id="DetectionPaired.diagram" class="classattr">
+                                        <input id="DetectionPaired.diagram-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator decorator-abstractmethod">@abstractmethod</div>
+
+        <span class="def">def</span>
+        <span class="name">diagram</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+                <label class="view-source-button" for="DetectionPaired.diagram-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DetectionPaired.diagram"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DetectionPaired.diagram-83"><a href="#DetectionPaired.diagram-83"><span class="linenos">83</span></a>    <span class="nd">@abstractmethod</span>
+</span><span id="DetectionPaired.diagram-84"><a href="#DetectionPaired.diagram-84"><span class="linenos">84</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="#Detection">Detection</a></dt>
+                                <dd id="DetectionPaired.outliers" class="variable"><a href="#Detection.outliers">outliers</a></dd>
+                <dd id="DetectionPaired.without_outliers" class="variable"><a href="#Detection.without_outliers">without_outliers</a></dd>
+
+            </div>
+                                </dl>
                             </div>
                 </section>
     </main>
