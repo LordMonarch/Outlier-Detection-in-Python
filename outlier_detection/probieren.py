@@ -1,18 +1,28 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 30 12:31:20 2025
+import outlier_detection.files as f
+from outlier_detection.columns import NAME_DATA, NAME_OTHER
 
-@author: rainer
-"""
+d = f.categorial_x_categorial()
+vc = d.value_counts([NAME_DATA, NAME_OTHER])
 
-import numpy as np
+# pdf = pd.DataFrame(columns=d[NAME_DATA].unique(), index=d[NAME_OTHER].unique())
+# for row in vc.index:
+#    pdf.loc[row[1], row[0]] = vc.loc[(row[0], row[1])]
 
-from outlier_detection.simple.one_dimension_numeric.z_score import Z_SCORE
+pdf = vc.unstack()
 
-d = np.random.normal(size=10_000)
+print(pdf)
 
-z = Z_SCORE(list(d))
-z.z_score()
+count = pdf.values.sum()
 
-print(z.data)
+
+df = pdf.copy()
+for row in vc.index:
+    df.loc[row[1], row[0]] = (
+        (pdf.loc[row[1]].sum() / count) * (pdf[row[0]].sum() / count) * count
+    )
+
+dff = pdf / df
+print(pdf)
+
+print(df)
+print(dff)

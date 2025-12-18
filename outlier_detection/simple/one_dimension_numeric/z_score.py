@@ -42,6 +42,10 @@ class Z_SCORE(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
     - NAME_Z_SCORE : str
         Name der Spalte, in der die berechneten Z-Scores gespeichert werden.
     - NAME_MEAN : str
@@ -65,6 +69,12 @@ class Z_SCORE(Detection):
     - threshold : float, optional
         Schwellenwert für die Ausreißererkennung (Standard: 3.0).
 
+    Varianten
+    ---------
+    - Die minimalen und maximalen 1 % der Daten vorher abschneiden.
+    - Den Algorithmus iterativ, ausführen. Nach dem Entfernen eines Outliers, ändern sich die Parameter
+      für eine erneute Berechnung. Dadurch werden andere Outliers gefunden.
+
     Beispiel
     -------
     ```
@@ -85,7 +95,7 @@ class Z_SCORE(Detection):
         pdf[NAME_Z_SCORE] = (pdf[NAME_DATA] - pdf[NAME_MEAN]) / pdf[NAME_STD_DEV]
 
         pdf[NAME_IS_OUTLIER] = (pdf[NAME_Z_SCORE] >= self.threshold) | (
-                pdf[NAME_Z_SCORE] <= self.threshold * -1
+            pdf[NAME_Z_SCORE] <= self.threshold * -1
         )
 
         logger.success(

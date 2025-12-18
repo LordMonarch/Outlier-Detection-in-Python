@@ -39,7 +39,11 @@ class Histogram(Detection):
 
     Eigenschaften / Konstanten
     --------------------------
-    - _bins : int
+    - NAME_DATA: str
+        Name der Spalten, die die Kategorien enthält. Sie wird auf Ausreißer untersucht.
+    - NAME_IS_OUTLIER : str
+        Name der Spalte, ist es ein Ausreißer?
+    - bins : int
         Anzahl der Bins, die für die Histogrammberechnung verwendet werden.
 
     Methoden
@@ -113,10 +117,11 @@ class Histogram(Detection):
 
 if __name__ == "__main__":
     import pandas as pd
-    from sklearn.datasets import fetch_openml
+    import outlier_detection.files as f
+    from pathlib import Path
 
-    data = fetch_openml("segment", version=1, parser="auto")
-    data = pd.DataFrame(data.data)
+    path = Path(f.__file__).parent.joinpath("segment.csv").absolute()
+    data = pd.read_csv(path, header=0)
     data = data["hue-mean"].to_list()
 
     h = Histogram(data)
