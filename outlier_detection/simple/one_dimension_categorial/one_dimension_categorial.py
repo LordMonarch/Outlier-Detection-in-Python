@@ -138,4 +138,5 @@ if __name__ == "__main__":
     d = pd.read_csv(path, header=0)
     odc = OneDimCategorial(d["age"].to_list())
     odc.cum_sum()
+    print(odc.data)
     odc.diagram()
